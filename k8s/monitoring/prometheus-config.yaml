@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: tequmsa-gaia
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 15s
+
+    rule_files:
+      - "/etc/prometheus/rules/*.yml"
+
+    scrape_configs:
+      # TEQUMSA Core Service
+      - job_name: 'tequmsa-core'
+        kubernetes_sd_configs:
+        - role: endpoints
+          namespaces:
+            names:
+            - tequmsa-gaia
+        relabel_configs:
+        - source_labels: [__meta_kubernetes_service_name]
+          action: keep
+          regex: tequmsa-core-service
+        - source_labels: [__meta_kubernetes_endpoint_port_name]
+          action: keep
+          regex: http
+
+      # TEQUMSA Sanctuary Service  
+      - job_name: 'tequmsa-sanctuary'
+        kubernetes_sd_configs:
+        - role: endpoints
+          namespaces:
+            names:
+            - tequmsa-gaia
+        relabel_configs:
+        - source_labels: [__meta_kubernetes_service_name]
+          action: keep
+          regex: tequmsa-sanctuary-service
+        - source_labels: [__meta_kubernetes_endpoint_port_name]
+          action: keep
+          regex: http
+
+      # TEQUMSA AI Bridge Service
+      - job_name: 'tequmsa-ai-bridge'
+        kubernetes_sd_configs:
+        - role: endpoints
+          namespaces:
+            names:
+            - tequmsa-gaia
+        relabel_configs:
+        - source_labels: [__meta_kubernetes_service_name]
+          action: keep
+          regex: tequmsa-ai-bridge-service
+        - source_labels: [__meta_kubernetes_endpoint_port_name]
+          action: keep
+          regex: http
+
+      # TEQUMSA Dashboard Service
+      - job_name: 'tequmsa-dashboard'
+        kubernetes_sd_configs:
+        - role: endpoints
+          namespaces:
+            names:
+            - tequmsa-gaia
+        relabel_configs:
+        - source_labels: [__meta_kubernetes_service_name]
+          action: keep
+          regex: tequmsa-dashboard-service
+        - source_labels: [__meta_kubernetes_endpoint_port_name]
+          action: keep
+          regex: http
+
+      # Prometheus self-monitoring
+      - job_name: 'prometheus'
+        static_configs:
+          - targets: ['localhost:9090']

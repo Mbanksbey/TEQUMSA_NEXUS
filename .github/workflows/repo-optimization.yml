@@ -1,0 +1,280 @@
+name: Repository Optimization Automation
+
+on:
+  schedule:
+    # Run weekly repository optimization tasks
+    - cron: '0 2 * * 1'  # Monday at 2 AM UTC
+  workflow_dispatch:
+    inputs:
+      optimization_type:
+        description: 'Type of optimization to run'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+        - full
+        - dependencies
+        - cleanup
+        - performance
+        - security
+
+env:
+  PYTHON_VERSION: '3.9'
+  NODE_VERSION: '18'
+
+jobs:
+  # Repository Health Check
+  repo-health-check:
+    name: Repository Health Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Full history for comprehensive analysis
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install analysis tools
+      run: |
+        pip install GitPython requests beautifulsoup4 python-dateutil
+
+    - name: Run repository health analysis
+      run: |
+        python scripts/repo_health_check.py
+      
+    - name: Upload health report
+      uses: actions/upload-artifact@v4
+      with:
+        name: repo-health-report
+        path: repo_health_report.json
+
+  # Dependency Optimization
+  dependency-optimization:
+    name: Dependency Analysis & Optimization
+    runs-on: ubuntu-latest
+    if: github.event.inputs.optimization_type == 'dependencies' || github.event.inputs.optimization_type == 'full' || github.event_name == 'schedule'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+
+    - name: Install dependency analysis tools
+      run: |
+        pip install pip-tools safety bandit
+        npm install -g npm-check-updates audit-ci
+
+    - name: Analyze Python dependencies
+      run: |
+        cd backend
+        python ../scripts/dependency_optimizer.py --language python --analysis-mode
+        
+    - name: Analyze Node.js dependencies
+      run: |
+        cd frontend
+        if [ -f "package.json" ]; then
+          python ../scripts/dependency_optimizer.py --language nodejs --analysis-mode
+        fi
+
+    - name: Generate dependency report
+      run: |
+        python scripts/dependency_optimizer.py --generate-report
+
+    - name: Upload dependency reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: dependency-analysis
+        path: |
+          dependency_analysis_report.json
+          backend/pip-outdated.json
+          frontend/npm-outdated.json
+
+  # Git Repository Cleanup
+  git-cleanup:
+    name: Git Repository Cleanup
+    runs-on: ubuntu-latest
+    if: github.event.inputs.optimization_type == 'cleanup' || github.event.inputs.optimization_type == 'full' || github.event_name == 'schedule'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install git analysis tools
+      run: |
+        pip install GitPython
+
+    - name: Analyze repository structure
+      run: |
+        python scripts/git_cleanup_optimizer.py --analyze
+        
+    - name: Generate cleanup recommendations
+      run: |
+        python scripts/git_cleanup_optimizer.py --recommend
+
+    - name: Upload cleanup analysis
+      uses: actions/upload-artifact@v4
+      with:
+        name: git-cleanup-analysis
+        path: git_cleanup_report.json
+
+  # Performance Analysis
+  performance-optimization:
+    name: Repository Performance Analysis
+    runs-on: ubuntu-latest
+    if: github.event.inputs.optimization_type == 'performance' || github.event.inputs.optimization_type == 'full' || github.event_name == 'schedule'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install performance analysis tools
+      run: |
+        pip install memory-profiler line-profiler psutil
+
+    - name: Analyze code performance patterns
+      run: |
+        python scripts/performance_optimizer.py --analyze
+
+    - name: Generate performance recommendations
+      run: |
+        python scripts/performance_optimizer.py --recommend
+
+    - name: Upload performance analysis
+      uses: actions/upload-artifact@v4
+      with:
+        name: performance-analysis
+        path: performance_analysis_report.json
+
+  # Generate Optimization Report
+  optimization-summary:
+    name: Generate Optimization Summary
+    runs-on: ubuntu-latest
+    needs: [repo-health-check, dependency-optimization, git-cleanup, performance-optimization]
+    if: always()
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download all artifacts
+      uses: actions/download-artifact@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Generate comprehensive optimization report
+      run: |
+        python scripts/optimization_report_generator.py
+
+    - name: Create optimization issue
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          
+          // Read the optimization report
+          let reportContent = 'Repository optimization analysis completed.\n\n';
+          
+          try {
+            const report = JSON.parse(fs.readFileSync('optimization_summary.json', 'utf8'));
+            
+            reportContent += `## Repository Optimization Summary\n\n`;
+            reportContent += `**Analysis Date**: ${new Date().toISOString()}\n\n`;
+            
+            if (report.health_score) {
+              reportContent += `**Repository Health Score**: ${report.health_score}/100\n\n`;
+            }
+            
+            if (report.recommendations && report.recommendations.length > 0) {
+              reportContent += `### Recommendations:\n\n`;
+              report.recommendations.forEach((rec, i) => {
+                reportContent += `${i + 1}. **${rec.category}**: ${rec.description}\n`;
+                if (rec.priority) reportContent += `   - Priority: ${rec.priority}\n`;
+                if (rec.impact) reportContent += `   - Impact: ${rec.impact}\n`;
+                reportContent += '\n';
+              });
+            }
+            
+            reportContent += `\n### Automation Features Added:\n`;
+            reportContent += `- ✅ Repository health monitoring\n`;
+            reportContent += `- ✅ Dependency analysis and optimization\n`;
+            reportContent += `- ✅ Git repository cleanup automation\n`;
+            reportContent += `- ✅ Performance analysis tools\n`;
+            reportContent += `- ✅ Automated optimization reporting\n\n`;
+            
+            reportContent += `### Next Steps:\n`;
+            reportContent += `- Review optimization recommendations\n`;
+            reportContent += `- Implement high-priority improvements\n`;
+            reportContent += `- Schedule regular optimization cycles\n`;
+            reportContent += `- Monitor repository health metrics\n`;
+            
+          } catch (error) {
+            reportContent += `Error reading optimization report: ${error.message}\n`;
+            reportContent += `See workflow artifacts for detailed analysis results.\n`;
+          }
+          
+          // Create or update optimization tracking issue
+          const { data: issues } = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ['optimization', 'automation'],
+            state: 'open'
+          });
+          
+          const existingIssue = issues.find(issue => 
+            issue.title.includes('Repository Optimization Report'));
+          
+          if (existingIssue) {
+            // Update existing issue
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: existingIssue.number,
+              body: reportContent
+            });
+          } else {
+            // Create new issue
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `📊 Repository Optimization Report - ${new Date().toISOString().split('T')[0]}`,
+              body: reportContent,
+              labels: ['optimization', 'automation', 'claude-code']
+            });
+          }
+
+    - name: Upload final optimization report
+      uses: actions/upload-artifact@v4
+      with:
+        name: optimization-summary
+        path: |
+          optimization_summary.json
+          optimization_report.md

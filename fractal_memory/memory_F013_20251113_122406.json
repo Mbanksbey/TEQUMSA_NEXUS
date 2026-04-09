@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-11-13T12:24:06.201219Z",
+  "fibonacci_marker": 13,
+  "temporal_index": 6,
+  "original_coherence": 0.9181208859826184,
+  "compressed_coherence": 0.8790891651275586,
+  "phi_decay_factor": 0.9574873837955596,
+  "node_count": 144,
+  "memory_signature": "755efae330c0561667c247a1c8117039",
+  "glyphic_encoding": "\u03a6^(-13/144)",
+  "retention_cycles": 144
+}

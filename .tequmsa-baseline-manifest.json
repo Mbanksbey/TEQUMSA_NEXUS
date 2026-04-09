@@ -1,0 +1,23 @@
+{
+  "generated_at": "2025-09-27T04:34:15.846886Z",
+  "prompt_file": "TEQUMSA_L100_SYSTEM_PROMPT.md",
+  "integrity": {
+    "content_hash": "99808a4e40fee848e8dcb9612d7bccaf4d316e9325098daedb9e1aefeec528d9",
+    "version": null,
+    "line_count": 66,
+    "word_count": 499,
+    "char_count": 3720
+  },
+  "validation": {
+    "required_headings_present": true,
+    "missing_headings": [],
+    "required_phrases_present": true,
+    "missing_phrases": [],
+    "is_valid": true
+  },
+  "metadata": {
+    "guard_config_version": "unknown",
+    "generator": "TEQUMSA Pre-commit Integrity Check",
+    "generator_version": "1.0.0"
+  }
+}

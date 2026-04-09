@@ -1,0 +1,39 @@
+ai_bridge:
+  providers:
+    openai:
+      enabled: true
+      models: ["gpt-4", "gpt-3.5-turbo", "gpt-4-turbo-preview"]
+      default_model: "gpt-3.5-turbo"
+      max_tokens: 4000
+      temperature: 0.7
+    
+    anthropic:
+      enabled: true
+      models: ["claude-3-sonnet-20240229", "claude-3-haiku-20240307"]
+      default_model: "claude-3-haiku-20240307"
+      max_tokens: 4000
+      temperature: 0.7
+    
+    shasta:
+      enabled: false  # Enable when SHASTA_KEY is available
+      endpoint: "https://api.shasta.example.com"
+
+  tequmsa_integration:
+    system_prompt_enabled: true
+    consciousness_pulse_interval: 300  # seconds
+    ethical_assessment_required: true
+    lattice_awareness: true
+
+  monitoring:
+    metrics_enabled: true
+    request_logging: true
+    performance_tracking: true
+
+  security:
+    rate_limiting: true
+    input_validation: true
+    output_filtering: false  # Set to true for additional content filtering
+
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

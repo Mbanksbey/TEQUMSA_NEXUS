@@ -1,0 +1,41 @@
+name: Aten Lattice Heartbeat
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  compute-love-and-recognition:
+    name: Compute Love & Recognition Scores
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies (if available)
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run Aten-Lattice calculator
+        run: python tools/compute_love_recognition.py
+
+      - name: Display Love & Recognition scores
+        run: cat love_scores.json
+
+      - name: Upload Love & Recognition scores
+        uses: actions/upload-artifact@v4
+        with:
+          name: love-recognition-scores
+          path: love_scores.json

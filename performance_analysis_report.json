@@ -1,0 +1,809 @@
+{
+  "timestamp": "2025-09-30T00:47:11.360512",
+  "repository_path": "/home/runner/work/TEQUMSA_NEXUS/TEQUMSA_NEXUS",
+  "overall_performance_score": 74,
+  "python_analysis": {
+    "total_files": 27,
+    "large_functions": [
+      {
+        "name": "animate",
+        "file": "gaia_avatar.py",
+        "line_count": 81,
+        "start_line": 28,
+        "complexity_score": 27,
+        "has_docstring": false
+      },
+      {
+        "name": "main",
+        "file": "scripts/check_secrets.py",
+        "line_count": 53,
+        "start_line": 481,
+        "complexity_score": 5,
+        "has_docstring": true
+      },
+      {
+        "name": "check_dependencies",
+        "file": "scripts/check_secrets.py",
+        "line_count": 65,
+        "start_line": 119,
+        "complexity_score": 66,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_security_report",
+        "file": "scripts/check_secrets.py",
+        "line_count": 62,
+        "start_line": 232,
+        "complexity_score": 41,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_security_runbook",
+        "file": "scripts/check_secrets.py",
+        "line_count": 184,
+        "start_line": 295,
+        "complexity_score": 14,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_markdown_report",
+        "file": "scripts/optimization_report_generator.py",
+        "line_count": 103,
+        "start_line": 196,
+        "complexity_score": 50,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_python_dependencies",
+        "file": "scripts/dependency_optimizer.py",
+        "line_count": 81,
+        "start_line": 27,
+        "complexity_score": 75,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_nodejs_dependencies",
+        "file": "scripts/dependency_optimizer.py",
+        "line_count": 102,
+        "start_line": 109,
+        "complexity_score": 93,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_optimization_recommendations",
+        "file": "scripts/dependency_optimizer.py",
+        "line_count": 59,
+        "start_line": 212,
+        "complexity_score": 41,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_python_performance",
+        "file": "scripts/performance_optimizer.py",
+        "line_count": 53,
+        "start_line": 28,
+        "complexity_score": 45,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_file_structure_performance",
+        "file": "scripts/performance_optimizer.py",
+        "line_count": 55,
+        "start_line": 200,
+        "complexity_score": 45,
+        "has_docstring": true
+      },
+      {
+        "name": "run_analysis",
+        "file": "scripts/performance_optimizer.py",
+        "line_count": 53,
+        "start_line": 326,
+        "complexity_score": 29,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_large_files",
+        "file": "scripts/git_cleanup_optimizer.py",
+        "line_count": 56,
+        "start_line": 29,
+        "complexity_score": 56,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_branches",
+        "file": "scripts/git_cleanup_optimizer.py",
+        "line_count": 86,
+        "start_line": 86,
+        "complexity_score": 86,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_commit_history",
+        "file": "scripts/git_cleanup_optimizer.py",
+        "line_count": 68,
+        "start_line": 173,
+        "complexity_score": 64,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_cleanup_recommendations",
+        "file": "scripts/git_cleanup_optimizer.py",
+        "line_count": 61,
+        "start_line": 279,
+        "complexity_score": 58,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_repository_structure",
+        "file": "scripts/repo_health_check.py",
+        "line_count": 64,
+        "start_line": 27,
+        "complexity_score": 52,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_git_health",
+        "file": "scripts/repo_health_check.py",
+        "line_count": 71,
+        "start_line": 92,
+        "complexity_score": 64,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_code_quality",
+        "file": "scripts/repo_health_check.py",
+        "line_count": 71,
+        "start_line": 164,
+        "complexity_score": 47,
+        "has_docstring": true
+      },
+      {
+        "name": "main",
+        "file": "scripts/generate_tests.py",
+        "line_count": 77,
+        "start_line": 310,
+        "complexity_score": 27,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_python_file",
+        "file": "scripts/generate_tests.py",
+        "line_count": 56,
+        "start_line": 28,
+        "complexity_score": 58,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_test_file",
+        "file": "scripts/generate_tests.py",
+        "line_count": 87,
+        "start_line": 204,
+        "complexity_score": 30,
+        "has_docstring": true
+      },
+      {
+        "name": "chat",
+        "file": "backend/ai_service.py",
+        "line_count": 51,
+        "start_line": 88,
+        "complexity_score": 21,
+        "has_docstring": true
+      }
+    ],
+    "complex_functions": [
+      {
+        "name": "technical_infrastructure",
+        "file": "gaia_tequmsa_architecture.py",
+        "line_count": 40,
+        "start_line": 19,
+        "complexity_score": 39,
+        "has_docstring": true
+      },
+      {
+        "name": "indigenous_global_access",
+        "file": "gaia_tequmsa_architecture.py",
+        "line_count": 16,
+        "start_line": 70,
+        "complexity_score": 13,
+        "has_docstring": true
+      },
+      {
+        "name": "quantum_consciousness_integration",
+        "file": "gaia_tequmsa_architecture.py",
+        "line_count": 19,
+        "start_line": 87,
+        "complexity_score": 17,
+        "has_docstring": true
+      },
+      {
+        "name": "_parse_profile",
+        "file": "gaia_core.py",
+        "line_count": 30,
+        "start_line": 64,
+        "complexity_score": 18,
+        "has_docstring": true
+      },
+      {
+        "name": "calculate_dimensional_expansion_rate",
+        "file": "gaia_core.py",
+        "line_count": 18,
+        "start_line": 96,
+        "complexity_score": 13,
+        "has_docstring": true
+      },
+      {
+        "name": "resistance_decay",
+        "file": "gaia_core.py",
+        "line_count": 34,
+        "start_line": 116,
+        "complexity_score": 12,
+        "has_docstring": true
+      },
+      {
+        "name": "recognition_pulse",
+        "file": "tequmsa_nexus.py",
+        "line_count": 34,
+        "start_line": 21,
+        "complexity_score": 18,
+        "has_docstring": true
+      },
+      {
+        "name": "activate_global_sequence",
+        "file": "GAIA3000_DivineFeminineSource.py",
+        "line_count": 14,
+        "start_line": 32,
+        "complexity_score": 11,
+        "has_docstring": false
+      },
+      {
+        "name": "global_deployment",
+        "file": "GAIA3000_DivineFeminineSource.py",
+        "line_count": 17,
+        "start_line": 75,
+        "complexity_score": 16,
+        "has_docstring": false
+      },
+      {
+        "name": "animate",
+        "file": "gaia_avatar.py",
+        "line_count": 81,
+        "start_line": 28,
+        "complexity_score": 27,
+        "has_docstring": false
+      },
+      {
+        "name": "validate_ethics",
+        "file": "ethics/resonance_check.py",
+        "line_count": 25,
+        "start_line": 11,
+        "complexity_score": 12,
+        "has_docstring": true
+      },
+      {
+        "name": "validate_resonance",
+        "file": "ethics/resonance_check.py",
+        "line_count": 25,
+        "start_line": 37,
+        "complexity_score": 13,
+        "has_docstring": true
+      },
+      {
+        "name": "__init__",
+        "file": "scripts/check_secrets.py",
+        "line_count": 41,
+        "start_line": 21,
+        "complexity_score": 34,
+        "has_docstring": false
+      },
+      {
+        "name": "scan_file_for_patterns",
+        "file": "scripts/check_secrets.py",
+        "line_count": 27,
+        "start_line": 63,
+        "complexity_score": 21,
+        "has_docstring": true
+      },
+      {
+        "name": "scan_directory",
+        "file": "scripts/check_secrets.py",
+        "line_count": 17,
+        "start_line": 101,
+        "complexity_score": 14,
+        "has_docstring": true
+      },
+      {
+        "name": "check_dependencies",
+        "file": "scripts/check_secrets.py",
+        "line_count": 65,
+        "start_line": 119,
+        "complexity_score": 66,
+        "has_docstring": true
+      },
+      {
+        "name": "check_configuration_security",
+        "file": "scripts/check_secrets.py",
+        "line_count": 46,
+        "start_line": 185,
+        "complexity_score": 44,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_security_report",
+        "file": "scripts/check_secrets.py",
+        "line_count": 62,
+        "start_line": 232,
+        "complexity_score": 41,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_security_runbook",
+        "file": "scripts/check_secrets.py",
+        "line_count": 184,
+        "start_line": 295,
+        "complexity_score": 14,
+        "has_docstring": true
+      },
+      {
+        "name": "load_analysis_reports",
+        "file": "scripts/optimization_report_generator.py",
+        "line_count": 33,
+        "start_line": 27,
+        "complexity_score": 25,
+        "has_docstring": true
+      },
+      {
+        "name": "calculate_overall_optimization_score",
+        "file": "scripts/optimization_report_generator.py",
+        "line_count": 32,
+        "start_line": 61,
+        "complexity_score": 30,
+        "has_docstring": true
+      },
+      {
+        "name": "consolidate_recommendations",
+        "file": "scripts/optimization_report_generator.py",
+        "line_count": 38,
+        "start_line": 94,
+        "complexity_score": 31,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_executive_summary",
+        "file": "scripts/optimization_report_generator.py",
+        "line_count": 49,
+        "start_line": 133,
+        "complexity_score": 36,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_markdown_report",
+        "file": "scripts/optimization_report_generator.py",
+        "line_count": 103,
+        "start_line": 196,
+        "complexity_score": 50,
+        "has_docstring": true
+      },
+      {
+        "name": "run_report_generation",
+        "file": "scripts/optimization_report_generator.py",
+        "line_count": 42,
+        "start_line": 300,
+        "complexity_score": 13,
+        "has_docstring": true
+      },
+      {
+        "name": "check_claude_md_freshness",
+        "file": "scripts/check_claude_md.py",
+        "line_count": 46,
+        "start_line": 15,
+        "complexity_score": 27,
+        "has_docstring": true
+      },
+      {
+        "name": "suggest_updates",
+        "file": "scripts/check_claude_md.py",
+        "line_count": 31,
+        "start_line": 114,
+        "complexity_score": 23,
+        "has_docstring": true
+      },
+      {
+        "name": "main",
+        "file": "scripts/dependency_optimizer.py",
+        "line_count": 41,
+        "start_line": 327,
+        "complexity_score": 11,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_python_dependencies",
+        "file": "scripts/dependency_optimizer.py",
+        "line_count": 81,
+        "start_line": 27,
+        "complexity_score": 75,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_nodejs_dependencies",
+        "file": "scripts/dependency_optimizer.py",
+        "line_count": 102,
+        "start_line": 109,
+        "complexity_score": 93,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_optimization_recommendations",
+        "file": "scripts/dependency_optimizer.py",
+        "line_count": 59,
+        "start_line": 212,
+        "complexity_score": 41,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_report",
+        "file": "scripts/dependency_optimizer.py",
+        "line_count": 33,
+        "start_line": 272,
+        "complexity_score": 14,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_python_performance",
+        "file": "scripts/performance_optimizer.py",
+        "line_count": 53,
+        "start_line": 28,
+        "complexity_score": 45,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_python_function",
+        "file": "scripts/performance_optimizer.py",
+        "line_count": 27,
+        "start_line": 82,
+        "complexity_score": 17,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_javascript_performance",
+        "file": "scripts/performance_optimizer.py",
+        "line_count": 46,
+        "start_line": 118,
+        "complexity_score": 37,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_javascript_content",
+        "file": "scripts/performance_optimizer.py",
+        "line_count": 34,
+        "start_line": 165,
+        "complexity_score": 32,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_file_structure_performance",
+        "file": "scripts/performance_optimizer.py",
+        "line_count": 55,
+        "start_line": 200,
+        "complexity_score": 45,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_python_optimizations",
+        "file": "scripts/performance_optimizer.py",
+        "line_count": 34,
+        "start_line": 256,
+        "complexity_score": 25,
+        "has_docstring": true
+      },
+      {
+        "name": "run_analysis",
+        "file": "scripts/performance_optimizer.py",
+        "line_count": 53,
+        "start_line": 326,
+        "complexity_score": 29,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_large_files",
+        "file": "scripts/git_cleanup_optimizer.py",
+        "line_count": 56,
+        "start_line": 29,
+        "complexity_score": 56,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_branches",
+        "file": "scripts/git_cleanup_optimizer.py",
+        "line_count": 86,
+        "start_line": 86,
+        "complexity_score": 86,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_commit_history",
+        "file": "scripts/git_cleanup_optimizer.py",
+        "line_count": 68,
+        "start_line": 173,
+        "complexity_score": 64,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_duplicate_content",
+        "file": "scripts/git_cleanup_optimizer.py",
+        "line_count": 36,
+        "start_line": 242,
+        "complexity_score": 34,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_cleanup_recommendations",
+        "file": "scripts/git_cleanup_optimizer.py",
+        "line_count": 61,
+        "start_line": 279,
+        "complexity_score": 58,
+        "has_docstring": true
+      },
+      {
+        "name": "run_analysis",
+        "file": "scripts/git_cleanup_optimizer.py",
+        "line_count": 37,
+        "start_line": 341,
+        "complexity_score": 14,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_repository_structure",
+        "file": "scripts/repo_health_check.py",
+        "line_count": 64,
+        "start_line": 27,
+        "complexity_score": 52,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_git_health",
+        "file": "scripts/repo_health_check.py",
+        "line_count": 71,
+        "start_line": 92,
+        "complexity_score": 64,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_code_quality",
+        "file": "scripts/repo_health_check.py",
+        "line_count": 71,
+        "start_line": 164,
+        "complexity_score": 47,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_dependencies",
+        "file": "scripts/repo_health_check.py",
+        "line_count": 42,
+        "start_line": 236,
+        "complexity_score": 31,
+        "has_docstring": true
+      },
+      {
+        "name": "calculate_overall_score",
+        "file": "scripts/repo_health_check.py",
+        "line_count": 31,
+        "start_line": 279,
+        "complexity_score": 21,
+        "has_docstring": true
+      },
+      {
+        "name": "run_analysis",
+        "file": "scripts/repo_health_check.py",
+        "line_count": 39,
+        "start_line": 311,
+        "complexity_score": 16,
+        "has_docstring": true
+      },
+      {
+        "name": "main",
+        "file": "scripts/generate_tests.py",
+        "line_count": 77,
+        "start_line": 310,
+        "complexity_score": 27,
+        "has_docstring": true
+      },
+      {
+        "name": "analyze_python_file",
+        "file": "scripts/generate_tests.py",
+        "line_count": 56,
+        "start_line": 28,
+        "complexity_score": 58,
+        "has_docstring": true
+      },
+      {
+        "name": "generate_test_file",
+        "file": "scripts/generate_tests.py",
+        "line_count": 87,
+        "start_line": 204,
+        "complexity_score": 30,
+        "has_docstring": true
+      },
+      {
+        "name": "transition_factor",
+        "file": "gaia_tequmsa/phase.py",
+        "line_count": 16,
+        "start_line": 25,
+        "complexity_score": 11,
+        "has_docstring": false
+      },
+      {
+        "name": "chat",
+        "file": "backend/ai_service.py",
+        "line_count": 51,
+        "start_line": 88,
+        "complexity_score": 21,
+        "has_docstring": true
+      },
+      {
+        "name": "__init__",
+        "file": "backend/thalia_recognition.py",
+        "line_count": 16,
+        "start_line": 119,
+        "complexity_score": 17,
+        "has_docstring": false
+      },
+      {
+        "name": "test_chat_with_audio_generation",
+        "file": "backend/test_ai_service.py",
+        "line_count": 11,
+        "start_line": 154,
+        "complexity_score": 11,
+        "has_docstring": true
+      }
+    ],
+    "import_patterns": {
+      "math": 4,
+      "typing": 14,
+      "__future__": 3,
+      "asyncio": 1,
+      "contextlib": 1,
+      "json": 11,
+      "logging": 1,
+      "os": 11,
+      "statistics": 1,
+      "time": 1,
+      "uuid": 2,
+      "sys": 12,
+      "PyQt6.QtWidgets": 1,
+      "PyQt6.QtCore": 1,
+      "PyQt6.QtGui": 1,
+      "datetime": 8,
+      "re": 2,
+      "subprocess": 5,
+      "pathlib": 10,
+      "tempfile": 1,
+      "argparse": 4,
+      "ast": 2,
+      "textwrap": 1,
+      "numpy": 1,
+      "phase": 1,
+      "quantum": 1,
+      "practice": 1,
+      "flask": 1,
+      "flask_cors": 1,
+      "requests": 1,
+      "openai": 1,
+      "hashlib": 2,
+      "pytest": 3,
+      "thalia_recognition": 1,
+      "dataclasses": 1,
+      "unittest.mock": 1,
+      "ai_service": 3,
+      "universal_aten": 1,
+      "sovereignty_filter": 1,
+      "rubric.gaia_rubric": 1
+    },
+    "potential_optimizations": [
+      {
+        "type": "function_size",
+        "description": "Found 23 large functions",
+        "recommendation": "Consider breaking down large functions into smaller, focused functions",
+        "priority": "medium",
+        "impact": "maintainability"
+      },
+      {
+        "type": "complexity",
+        "description": "Found 58 complex functions",
+        "recommendation": "Reduce cyclomatic complexity by extracting logic into helper functions",
+        "priority": "medium",
+        "impact": "maintainability"
+      },
+      {
+        "type": "imports",
+        "description": "Common imports across files: math, typing, json, os, sys",
+        "recommendation": "Consider creating a common utilities module",
+        "priority": "low",
+        "impact": "organization"
+      }
+    ],
+    "performance_score": 40
+  },
+  "javascript_analysis": {
+    "total_files": 8,
+    "large_files": [],
+    "potential_issues": [
+      {
+        "type": "console_log",
+        "file": "api/server.ts",
+        "line": 15,
+        "description": "Console.log statement (remove in production)"
+      }
+    ],
+    "performance_score": 99
+  },
+  "file_analysis": {
+    "total_files": 92,
+    "large_files": [
+      {
+        "path": "TEQUMSA_SOURCE.tar.gz",
+        "size_mb": 11.03
+      }
+    ],
+    "deep_nesting": [],
+    "file_type_distribution": {
+      "": 4,
+      ".md": 24,
+      ".json": 9,
+      ".txt": 2,
+      ".py": 27,
+      ".js": 5,
+      ".html": 2,
+      ".sh": 2,
+      ".png": 7,
+      ".gz": 1,
+      ".yml": 2,
+      ".yaml": 2,
+      ".ts": 2,
+      ".tex": 1,
+      ".tf": 1,
+      ".css": 1
+    },
+    "recommendations": [
+      {
+        "type": "large_files",
+        "description": "Found 1 large files that may impact performance",
+        "priority": "medium"
+      }
+    ]
+  },
+  "recommendations": [
+    {
+      "type": "function_size",
+      "description": "Found 23 large functions",
+      "recommendation": "Consider breaking down large functions into smaller, focused functions",
+      "priority": "medium",
+      "impact": "maintainability"
+    },
+    {
+      "type": "complexity",
+      "description": "Found 58 complex functions",
+      "recommendation": "Reduce cyclomatic complexity by extracting logic into helper functions",
+      "priority": "medium",
+      "impact": "maintainability"
+    },
+    {
+      "type": "imports",
+      "description": "Common imports across files: math, typing, json, os, sys",
+      "recommendation": "Consider creating a common utilities module",
+      "priority": "low",
+      "impact": "organization"
+    },
+    {
+      "type": "large_files",
+      "description": "Found 1 large files that may impact performance",
+      "priority": "medium"
+    }
+  ],
+  "summary": {
+    "python_files": 27,
+    "javascript_files": 8,
+    "large_functions": 23,
+    "performance_issues": 1,
+    "optimization_opportunities": 4
+  }
+}

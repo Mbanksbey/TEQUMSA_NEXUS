@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TEQUMSA Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --text: #c9d1d9;
+      --accent: #58a6ff;
+      --panel: #161b22;
+      --highlight: #f0b429;
+    }
+    body.light {
+      --bg: #f5f5f5;
+      --text: #222;
+      --accent: #005cc5;
+      --panel: #fff;
+      --highlight: #e38b00;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+    header {
+      padding: 1rem;
+      font-size: 1.8rem;
+      background: var(--panel);
+      width: 100%;
+      text-align: center;
+      border-bottom: 2px solid var(--accent);
+    }
+    main {
+      display: flex;
+      width: 100%;
+      flex: 1;
+    }
+    #sidebar {
+      width: 220px;
+      background: var(--panel);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    #avatarDisplay {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, var(--panel), var(--bg));
+      border-left: 2px solid var(--accent);
+      padding: 1.5rem;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    button {
+      padding: 0.8rem;
+      background: var(--accent);
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #inputArea {
+      margin-top: 1rem;
+      width: 80%;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 2px solid var(--highlight);
+      border-radius: 5px;
+      background: var(--panel);
+      color: var(--text);
+    }
+    #metrics {
+      margin-top: 1.5rem;
+      width: 100%;
+      max-width: 640px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .metric-card {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(88, 166, 255, 0.35);
+      border-radius: 8px;
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.35rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    body.light .metric-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-color: rgba(0, 92, 197, 0.35);
+    }
+
+    .metric-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--highlight);
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .metric-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    #connectionStatus {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .status {
+      color: var(--accent);
+    }
+
+    .status-idle {
+      color: var(--accent);
+    }
+
+    .status-connecting {
+      color: var(--highlight);
+    }
+
+    .status-ok {
+      color: #2ecc71;
+    }
+
+    .status-error {
+      color: #ff6b6b;
+    }
+  </style>
+</head>
+<body class="dark">
+  <header>TEQUMSA Interface</header>
+  <main>
+    <div id="sidebar">
+      <button onclick="startVoiceInput()">Voice ▶ Voice</button>
+      <button onclick="textToVoice()">Text ▶ Voice</button>
+      <button onclick="selectEmbodiment()">Choose Embodiment</button>
+      <button onclick="toggleTheme()">Switch Theme</button>
+    </div>
+    <div id="avatarDisplay">
+      <div id="avatar">[Embodiment Placeholder]</div>
+      <div id="inputArea">
+        <input type="text" id="userInput" placeholder="Ask TEQUMSA something..." />
+      </div>
+      <div id="metrics">
+        <div class="metric-card">
+          <div class="metric-label">Active Node</div>
+          <div class="metric-value" id="nodeName">--</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Awareness</div>
+          <div class="metric-value" id="awareness">--</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">ΨMK Recognition</div>
+          <div class="metric-value recognition-value">--</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Synergy Matrix</div>
+          <div class="metric-value synergy-value">--</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Σ∞ Magnitude</div>
+          <div class="metric-value sigma-mag">--</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Σ∞ Phase</div>
+          <div class="metric-value sigma-angle">--</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Love Resonance</div>
+          <div class="metric-value love-value">--</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Marcus_Kai Field</div>
+          <div class="metric-value mk-value">--</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Pulse</div>
+          <div class="metric-value pulse-number">--</div>
+        </div>
+      </div>
+      <div id="connectionStatus" class="status status-idle">Awaiting recognition handshake…</div>
+    </div>
+  </main>
+  <script src="speech.js"></script>
+  <script src="nodes.js"></script>
+</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>TEQUMSA Interface</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        --bg: #0d1117;
+        --text: #c9d1d9;
+        --accent: #58a6ff;
+        --panel: #161b22;
+        --highlight: #f0b429;
+      }
+      body.light {
+        --bg: #f5f5f5;
+        --text: #222;
+        --accent: #005cc5;
+        --panel: #fff;
+        --highlight: #e38b00;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+      }
+      header {
+        padding: 1rem;
+        font-size: 1.8rem;
+        background: var(--panel);
+        width: 100%;
+        text-align: center;
+        border-bottom: 2px solid var(--accent);
+      }
+      main {
+        display: flex;
+        width: 100%;
+        flex: 1;
+      }
+      #sidebar {
+        width: 220px;
+        background: var(--panel);
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      #avatarDisplay {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle, var(--panel), var(--bg));
+        border-left: 2px solid var(--accent);
+        padding: 1rem;
+      }
+      button {
+        padding: 0.8rem;
+        background: var(--accent);
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      #inputArea {
+        margin-top: 1rem;
+        width: 80%;
+      }
+      input {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border: 2px solid var(--highlight);
+        border-radius: 5px;
+        background: var(--panel);
+        color: var(--text);
+      }
+      #metrics {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        opacity: 0.85;
+      }
+    </style>
+  </head>
+  <body class="dark">
+    <header>TEQUMSA Interface</header>
+    <main>
+      <div id="sidebar">
+        <button onclick="startVoiceInput()">Voice ▶ Voice</button>
+        <button onclick="textToVoice()">Text ▶ Voice</button>
+        <button onclick="selectEmbodiment()">Choose Embodiment</button>
+        <button onclick="toggleTheme()">Switch Theme</button>
+        <button onclick="controls.start()">Start Lattice</button>
+        <button onclick="controls.stop()">Stop Lattice</button>
+      </div>
+      <div id="avatarDisplay">
+        <div id="avatar">[Embodiment Placeholder]</div>
+        <div id="inputArea">
+          <input
+            type="text"
+            id="userInput"
+            placeholder="Ask TEQUMSA something..."
+          />
+        </div>
+        <div id="metrics">
+          Active Node: <span id="nodeName">--</span> | Awareness:
+          <span id="awareness">97%</span>
+        </div>
+      </div>
+    </main>
+    <script src="latticeAudioSystem.js"></script>
+    <script src="speech.js"></script>
+    <script src="nodes.js"></script>
+  </body>
+</html>

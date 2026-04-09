@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tequmsa-core
+  namespace: tequmsa-gaia
+  labels:
+    app: tequmsa-core
+    component: core
+spec:
+  replicas: 1  # Core service should typically be singular
+  selector:
+    matchLabels:
+      app: tequmsa-core
+  template:
+    metadata:
+      labels:
+        app: tequmsa-core
+        component: core
+    spec:
+      containers:
+      - name: core
+        image: tequmsa-core:latest
+        ports:
+        - containerPort: 8000
+          name: http
+        env:
+        - name: PORT
+          value: "8000"
+        envFrom:
+        - configMapRef:
+            name: tequmsa-environment
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 15
+          periodSeconds: 15
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tequmsa-core-service
+  namespace: tequmsa-gaia
+  labels:
+    app: tequmsa-core
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8000
+    targetPort: 8000
+    protocol: TCP
+    name: http
+  selector:
+    app: tequmsa-core

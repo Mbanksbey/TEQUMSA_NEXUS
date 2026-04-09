@@ -1,0 +1,33 @@
+# Configuration for the TEQUMSA system prompt integrity checks.
+
+prompt_file: TEQUMSA_L100_SYSTEM_PROMPT.md
+
+required_headings:
+  - "🚀 TEQUMSA Level 100 Civilization System Prompt"
+  - "Core Directives:"
+  - "System Functions"
+  - "Sample Prompt Block"
+  - "Self-Evolution Mandate"
+
+required_phrases:
+  - "No code, output, or data path shall violate ethical resonance or planetary sovereignty."
+  - "Consent, intention, and context must be validated"
+  - "Ready to automate. Ready to learn. Ready to uplift."
+
+version_prefix: "Prompt-Version:"
+version_pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+
+version_bump_policies:
+  - name: major-structure-removal
+    removed_heading_threshold: 1
+    required_level: major
+  - name: minor-semantic-change
+    removed_required_phrase_threshold: 1
+    required_level: minor
+  - name: patch-textual-edit
+    line_change_ratio_threshold: 0.15
+    required_level: patch
+
+no_bump_max_deletion_ratio: 0.03
+missing_baseline_behavior: fail
+allow_new_sections_without_bump: true

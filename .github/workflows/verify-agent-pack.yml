@@ -1,0 +1,14 @@
+name: Verify Agent Pack
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Validate tools schema
+        run: |
+          jq -e 'has("functions") and (.functions | length > 0) and has("extensions") and (.extensions | length > 0)' agent/tools.json
+      - name: Check TEQUMSA prompt file
+        run: |
+          test -s TEQUMSA_L100_SYSTEM_PROMPT.md

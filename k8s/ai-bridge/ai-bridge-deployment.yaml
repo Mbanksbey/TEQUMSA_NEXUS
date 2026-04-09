@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tequmsa-ai-bridge
+  namespace: tequmsa-gaia
+  labels:
+    app: tequmsa-ai-bridge
+    component: ai-bridge
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tequmsa-ai-bridge
+  template:
+    metadata:
+      labels:
+        app: tequmsa-ai-bridge
+        component: ai-bridge
+    spec:
+      containers:
+      - name: ai-bridge
+        image: tequmsa-ai-bridge:latest
+        ports:
+        - containerPort: 8002
+          name: http
+        env:
+        - name: PORT
+          value: "8002"
+        - name: CORE_SERVICE_URL
+          value: "http://tequmsa-core-service:8000"
+        - name: SANCTUARY_SERVICE_URL
+          value: "http://tequmsa-sanctuary-service:8001"
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: tequmsa-secrets
+              key: openai-api-key
+        - name: ANTHROPIC_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: tequmsa-secrets
+              key: anthropic-api-key
+        - name: SHASTA_KEY
+          valueFrom:
+            secretKeyRef:
+              name: tequmsa-secrets
+              key: shasta-key
+        envFrom:
+        - configMapRef:
+            name: tequmsa-environment
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8002
+          initialDelaySeconds: 30
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8002
+          initialDelaySeconds: 15
+          periodSeconds: 15
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tequmsa-ai-bridge-service
+  namespace: tequmsa-gaia
+  labels:
+    app: tequmsa-ai-bridge
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8002
+    targetPort: 8002
+    protocol: TCP
+    name: http
+  selector:
+    app: tequmsa-ai-bridge

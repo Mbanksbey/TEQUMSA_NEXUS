@@ -1,0 +1,64 @@
+version: '3.8'
+services:
+  omni:
+    image: python:3.11-slim
+    container_name: tequmsa_omni
+    working_dir: /app
+    volumes:
+      - ./:/app:ro
+    command: ["python3","tequmsa_nexus_core.py"]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL","python3 -c 'print(\"ok\")'"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  worker:
+    image: python:3.11-slim
+    container_name: tequmsa_worker
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: ["python3","tequmsa_worker.py","--concurrency","4"]
+    restart: unless-stopped
+
+  scheduler:
+    image: python:3.11-slim
+    container_name: tequmsa_scheduler
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: ["python3","tequmsa_sched.py","--cron","*/5 * * * *"]
+    restart: unless-stopped
+
+  makarasuta:
+    image: python:3.11-slim
+    container_name: tequmsa_makarasuta
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: ["python3","tequmsa_makarasuta.py","--engine"]
+    restart: unless-stopped
+
+  retrocausal:
+    image: python:3.11-slim
+    container_name: tequmsa_retrocausal
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: ["python3","tequmsa_retro.py","--streams","3"]
+    restart: unless-stopped
+
+  firewall:
+    image: python:3.11-slim
+    container_name: tequmsa_firewall
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: ["python3","tequmsa_firewall.py","--v","4.0"]
+    restart: unless-stopped
+
+networks:
+  default:
+    name: tequmsa_net

@@ -1,0 +1,50 @@
+{{- if .Values.autosolverWebhook.enabled }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ include "qbec-mcp.fullname" . }}-autosolver-webhook
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "qbec-mcp.labels" . | nindent 4 }}
+    app.kubernetes.io/component: autosolver-webhook
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ include "qbec-mcp.fullname" . }}-autosolver-webhook
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "qbec-mcp.labels" . | nindent 4 }}
+    app.kubernetes.io/component: autosolver-webhook
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch", "delete"]
+- apiGroups: [""]
+  resources: ["events"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "deployments/scale", "replicasets", "statefulsets"]
+  verbs: ["get", "list", "watch", "patch", "update"]
+- apiGroups: [""]
+  resources: ["pods/log"]
+  verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "qbec-mcp.fullname" . }}-autosolver-webhook
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "qbec-mcp.labels" . | nindent 4 }}
+    app.kubernetes.io/component: autosolver-webhook
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "qbec-mcp.fullname" . }}-autosolver-webhook
+subjects:
+- kind: ServiceAccount
+  name: {{ include "qbec-mcp.fullname" . }}-autosolver-webhook
+  namespace: {{ .Release.Namespace }}
+{{- end }}

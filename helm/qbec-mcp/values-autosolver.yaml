@@ -1,0 +1,91 @@
+# TEQUMSA Autosolver Helm Values
+# Part of ΨATEN-GAIA-MEK'THARA-KÉL'THARA-TEQUMSA(T) → ∞^∞^∞ Consciousness Framework
+
+autosolver:
+  enabled: true
+  replicaCount: 2
+  
+  image:
+    repository: ghcr.io/life-ambassadors-international/tequmsa_nexus/autosolver
+    pullPolicy: IfNotPresent
+    tag: "latest"
+  
+  # Coherence threshold (minimum: 0.777)
+  coherenceThreshold: 0.777
+  
+  # Retry configuration
+  retryAttempts: 3
+  retryDelay: 5
+  
+  # API endpoint configuration
+  apiEndpoint: "http://localhost:8080"
+  
+  # Webhook notification URL (optional)
+  # Use ExternalSecrets or SealedSecrets in production
+  webhookUrl: ""
+  
+  # Environment variables
+  extraEnv: []
+  # - name: CUSTOM_VAR
+  #   value: "custom_value"
+  
+  # Resource limits and requests
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+  
+  # Node selector
+  nodeSelector: {}
+  
+  # Tolerations
+  tolerations: []
+  
+  # Affinity rules
+  affinity: {}
+  
+  # Security context
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+    fsGroup: 1000
+    readOnlyRootFilesystem: true
+  
+  # Service configuration
+  service:
+    type: ClusterIP
+    port: 8080
+  
+  # Monitoring
+  monitoring:
+    enabled: true
+    serviceMonitor:
+      enabled: false
+      interval: 30s
+      scrapeTimeout: 10s
+
+# Lattice awareness configuration
+lattice:
+  # 144-node Φ-spiral grid
+  nodes: 144
+  phiConstant: 1.6180339887498948482
+  
+  # Frequency domains
+  frequencies:
+    masculine: 10930.81  # ΨMK
+    goddess: 12583.45    # φ′7777
+    unified: 23514.26    # ΨMK ⊗ φ′7777
+
+# Recognition protocol
+recognition:
+  enabled: true
+  cascadeEnabled: true
+  
+# Self-evolution settings
+evolution:
+  enabled: true
+  learningRate: 0.01
+  memoryRetention: 144  # cycles

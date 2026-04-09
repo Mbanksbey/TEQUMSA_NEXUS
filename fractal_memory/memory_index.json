@@ -1,0 +1,301 @@
+{
+  "created": "2025-11-06T08:12:20.531896Z",
+  "entries": [
+    {
+      "filename": "memory_F034_20251106_081220.json",
+      "timestamp": "2025-11-06T08:12:20.531538Z",
+      "fibonacci_marker": 34,
+      "signature": "cc8a3a4f9eb52990e35b7585a44cb45f"
+    },
+    {
+      "filename": "memory_F002_20251106_082502.json",
+      "timestamp": "2025-11-06T08:25:02.190428Z",
+      "fibonacci_marker": 2,
+      "signature": "01e4416accb678b871e48025f5db1114"
+    },
+    {
+      "filename": "memory_F013_20251106_181706.json",
+      "timestamp": "2025-11-06T18:17:06.179320Z",
+      "fibonacci_marker": 13,
+      "signature": "552247e324e88a7b4db92a76c6d114fd"
+    },
+    {
+      "filename": "memory_F034_20251106_220156.json",
+      "timestamp": "2025-11-06T22:01:56.155384Z",
+      "fibonacci_marker": 34,
+      "signature": "c842157d831683bac7a7b4d449e9981e"
+    },
+    {
+      "filename": "memory_F089_20251107_005546.json",
+      "timestamp": "2025-11-07T00:55:46.517403Z",
+      "fibonacci_marker": 89,
+      "signature": "61b0051e6845e58a357e156cf306a7d1"
+    },
+    {
+      "filename": "memory_F003_20251107_055539.json",
+      "timestamp": "2025-11-07T05:55:39.854104Z",
+      "fibonacci_marker": 3,
+      "signature": "6e780fafabcbf8da3dbaac7996ceebe5"
+    },
+    {
+      "filename": "memory_F021_20251107_075331.json",
+      "timestamp": "2025-11-07T07:53:31.321308Z",
+      "fibonacci_marker": 21,
+      "signature": "61be6b1b8d201d2383b88cdaa0764681"
+    },
+    {
+      "filename": "memory_F001_20251107_075412.json",
+      "timestamp": "2025-11-07T07:54:12.796674Z",
+      "fibonacci_marker": 1,
+      "signature": "1ca6ecbc8e96dac1ce9a5756051aa5a3"
+    },
+    {
+      "filename": "memory_F003_20251107_075527.json",
+      "timestamp": "2025-11-07T07:55:27.615992Z",
+      "fibonacci_marker": 3,
+      "signature": "3adfcccec7ca0b3c483fc5dbce45b8cb"
+    },
+    {
+      "filename": "memory_F055_20251107_122233.json",
+      "timestamp": "2025-11-07T12:22:33.078520Z",
+      "fibonacci_marker": 55,
+      "signature": "86b6d15ea00e98ee0cb1bb6fd9e3ec3e"
+    },
+    {
+      "filename": "memory_F002_20251107_220050.json",
+      "timestamp": "2025-11-07T22:00:50.768339Z",
+      "fibonacci_marker": 2,
+      "signature": "7ad4d9b46d0211c283553c141a4959ef"
+    },
+    {
+      "filename": "memory_F003_20251108_005215.json",
+      "timestamp": "2025-11-08T00:52:15.817021Z",
+      "fibonacci_marker": 3,
+      "signature": "39fe8b2cf310d49400ee12a9b7a74da2"
+    },
+    {
+      "filename": "memory_F013_20251108_035630.json",
+      "timestamp": "2025-11-08T03:56:30.520324Z",
+      "fibonacci_marker": 13,
+      "signature": "80194600ef6194174107f07dac53edc7"
+    },
+    {
+      "filename": "memory_F005_20251108_040140.json",
+      "timestamp": "2025-11-08T04:01:40.344233Z",
+      "fibonacci_marker": 5,
+      "signature": "ba0b5024d99a3613226ed77812df32ec"
+    },
+    {
+      "filename": "memory_F008_20251108_041129.json",
+      "timestamp": "2025-11-08T04:11:29.998313Z",
+      "fibonacci_marker": 8,
+      "signature": "9680380217e0082edd7a345edce8d0b7"
+    },
+    {
+      "filename": "memory_F034_20251108_042308.json",
+      "timestamp": "2025-11-08T04:23:08.655578Z",
+      "fibonacci_marker": 34,
+      "signature": "e06465afc8a22844a14a23ba0bab9355"
+    },
+    {
+      "filename": "memory_F001_20251108_043448.json",
+      "timestamp": "2025-11-08T04:34:48.282968Z",
+      "fibonacci_marker": 1,
+      "signature": "3daf221c42563b3046937b8fd02dc7a4"
+    },
+    {
+      "filename": "memory_F089_20251108_044446.json",
+      "timestamp": "2025-11-08T04:44:46.815394Z",
+      "fibonacci_marker": 89,
+      "signature": "e6518d60155f8f6fee101f8f24b1ad40"
+    },
+    {
+      "filename": "memory_F003_20251108_050339.json",
+      "timestamp": "2025-11-08T05:03:39.886705Z",
+      "fibonacci_marker": 3,
+      "signature": "e795476c1c78ba84795730a928c847af"
+    },
+    {
+      "filename": "memory_F144_20251108_050711.json",
+      "timestamp": "2025-11-08T05:07:11.665662Z",
+      "fibonacci_marker": 144,
+      "signature": "a9d06fb0c96058fb7399d13b3402b731"
+    },
+    {
+      "filename": "memory_F144_20251108_122011.json",
+      "timestamp": "2025-11-08T12:20:11.421384Z",
+      "fibonacci_marker": 144,
+      "signature": "74e01a3a929a6b27092e4064a9012f86"
+    },
+    {
+      "filename": "memory_F001_20251108_194325.json",
+      "timestamp": "2025-11-08T19:43:25.835092Z",
+      "fibonacci_marker": 1,
+      "signature": "b7462bdc00ac9e6c3d75b4981ff45092"
+    },
+    {
+      "filename": "memory_F003_20251108_221239.json",
+      "timestamp": "2025-11-08T22:12:39.394121Z",
+      "fibonacci_marker": 3,
+      "signature": "3b01079203551a7aae8947bf029d0633"
+    },
+    {
+      "filename": "memory_F002_20251108_224750.json",
+      "timestamp": "2025-11-08T22:47:50.497941Z",
+      "fibonacci_marker": 2,
+      "signature": "4db63e8aeb2b79ff935345e5027e2a94"
+    },
+    {
+      "filename": "memory_F089_20251108_224922.json",
+      "timestamp": "2025-11-08T22:49:22.262479Z",
+      "fibonacci_marker": 89,
+      "signature": "69026939fe5dd168ec72fe6e6fd49334"
+    },
+    {
+      "filename": "memory_F055_20251108_225009.json",
+      "timestamp": "2025-11-08T22:50:09.341315Z",
+      "fibonacci_marker": 55,
+      "signature": "8a7db16160ef33f2707cdafb632584a7"
+    },
+    {
+      "filename": "memory_F008_20251108_225305.json",
+      "timestamp": "2025-11-08T22:53:05.695087Z",
+      "fibonacci_marker": 8,
+      "signature": "f5e0ddbce5df4496b9330332e3ead58f"
+    },
+    {
+      "filename": "memory_F001_20251108_231237.json",
+      "timestamp": "2025-11-08T23:12:37.027643Z",
+      "fibonacci_marker": 1,
+      "signature": "9183e197036f66ef421d1261f246706c"
+    },
+    {
+      "filename": "memory_F144_20251109_005835.json",
+      "timestamp": "2025-11-09T00:58:35.103223Z",
+      "fibonacci_marker": 144,
+      "signature": "f613e17360e3b86ca65ef68f5711b15f"
+    },
+    {
+      "filename": "memory_F002_20251109_122002.json",
+      "timestamp": "2025-11-09T12:20:02.154991Z",
+      "fibonacci_marker": 2,
+      "signature": "5fb42e7fd351d48bfeb6d9ddc619454b"
+    },
+    {
+      "filename": "memory_F089_20251109_145034.json",
+      "timestamp": "2025-11-09T14:50:34.488947Z",
+      "fibonacci_marker": 89,
+      "signature": "7479b3db6053ca3ac9c64577215928b0"
+    },
+    {
+      "filename": "memory_F034_20251109_210856.json",
+      "timestamp": "2025-11-09T21:08:56.412182Z",
+      "fibonacci_marker": 34,
+      "signature": "e0840e3a0b2eff30ccbe9c37f6f5a192"
+    },
+    {
+      "filename": "memory_F144_20251109_231847.json",
+      "timestamp": "2025-11-09T23:18:47.713503Z",
+      "fibonacci_marker": 144,
+      "signature": "224b31509f07d0e21b741ecc8bde42ed"
+    },
+    {
+      "filename": "memory_F089_20251110_005846.json",
+      "timestamp": "2025-11-10T00:58:46.279156Z",
+      "fibonacci_marker": 89,
+      "signature": "d3a71c96ada412d8c6023d09c738d9c1"
+    },
+    {
+      "filename": "memory_F001_20251110_122324.json",
+      "timestamp": "2025-11-10T12:23:24.893509Z",
+      "fibonacci_marker": 1,
+      "signature": "33f40ef3cb40ba4b59a316c9b3a42c42"
+    },
+    {
+      "filename": "memory_F008_20251111_005629.json",
+      "timestamp": "2025-11-11T00:56:29.413316Z",
+      "fibonacci_marker": 8,
+      "signature": "153710ba5432a3bd0e76e16e5ecff45a"
+    },
+    {
+      "filename": "memory_F005_20251111_122328.json",
+      "timestamp": "2025-11-11T12:23:28.712097Z",
+      "fibonacci_marker": 5,
+      "signature": "eb59e8b0c4cadaffcbfe680960dc2227"
+    },
+    {
+      "filename": "memory_F144_20251112_005611.json",
+      "timestamp": "2025-11-12T00:56:11.047435Z",
+      "fibonacci_marker": 144,
+      "signature": "c73dcb5e5157a58cb58b5d585c7d2cb8"
+    },
+    {
+      "filename": "memory_F005_20251112_092716.json",
+      "timestamp": "2025-11-12T09:27:16.223382Z",
+      "fibonacci_marker": 5,
+      "signature": "cea097cc2d1f8a64c5faf3b5c98e4d2c"
+    },
+    {
+      "filename": "memory_F008_20251112_122353.json",
+      "timestamp": "2025-11-12T12:23:53.321125Z",
+      "fibonacci_marker": 8,
+      "signature": "32faa80977bef3e460083249f462693b"
+    },
+    {
+      "filename": "memory_F055_20251113_005609.json",
+      "timestamp": "2025-11-13T00:56:09.165161Z",
+      "fibonacci_marker": 55,
+      "signature": "9614fe2419a0a64c792f30f7af23067b"
+    },
+    {
+      "filename": "memory_F089_20251113_041046.json",
+      "timestamp": "2025-11-13T04:10:46.785935Z",
+      "fibonacci_marker": 89,
+      "signature": "3015405869c07087d03a911613f5a1c3"
+    },
+    {
+      "filename": "memory_F013_20251113_122406.json",
+      "timestamp": "2025-11-13T12:24:06.201219Z",
+      "fibonacci_marker": 13,
+      "signature": "755efae330c0561667c247a1c8117039"
+    },
+    {
+      "filename": "memory_F003_20251114_005627.json",
+      "timestamp": "2025-11-14T00:56:27.225709Z",
+      "fibonacci_marker": 3,
+      "signature": "d0b77ba82ae5a1bcee831336b3b9828b"
+    },
+    {
+      "filename": "memory_F089_20251114_060258.json",
+      "timestamp": "2025-11-14T06:02:58.402651Z",
+      "fibonacci_marker": 89,
+      "signature": "be53be9d37262cdd42cf1caef7eb2d8e"
+    },
+    {
+      "filename": "memory_F002_20251114_060814.json",
+      "timestamp": "2025-11-14T06:08:14.102613Z",
+      "fibonacci_marker": 2,
+      "signature": "2f97ec3b8f1eedcf211b806476237b81"
+    },
+    {
+      "filename": "memory_F089_20251114_122346.json",
+      "timestamp": "2025-11-14T12:23:46.146812Z",
+      "fibonacci_marker": 89,
+      "signature": "b653f8db6f6a193fab05aa307dec7294"
+    },
+    {
+      "filename": "memory_F013_20251115_005454.json",
+      "timestamp": "2025-11-15T00:54:54.169676Z",
+      "fibonacci_marker": 13,
+      "signature": "66a69d366904bf90c7993b927a378972"
+    },
+    {
+      "filename": "memory_F034_20251115_061920.json",
+      "timestamp": "2025-11-15T06:19:20.715358Z",
+      "fibonacci_marker": 34,
+      "signature": "793ff7c43006c6405ceed8620b24a9ca"
+    }
+  ],
+  "last_updated": "2025-11-15T06:19:20.715646Z",
+  "total_entries": 49
+}

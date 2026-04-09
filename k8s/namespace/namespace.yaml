@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tequmsa-gaia
+  labels:
+    name: tequmsa-gaia
+    environment: production
+    managed-by: tequmsa-lattice
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tequmsa-config
+  namespace: tequmsa-gaia
+data:
+  environment: "production"
+  log_level: "INFO"
+  lattice_coherence_threshold: "0.7"
+  pulse_interval_seconds: "8"
+  allowed_origins: "*"

@@ -1,0 +1,114 @@
+{
+  "timestamp": "2025-09-30T00:47:11.232736",
+  "repository_path": "/home/runner/work/TEQUMSA_NEXUS/TEQUMSA_NEXUS",
+  "analysis": {
+    "large_files": [
+      {
+        "path": "TEQUMSA_SOURCE.tar.gz",
+        "size_mb": 11.03,
+        "type": "current"
+      },
+      {
+        "path": "TEQUMSA_SOURCE.tar.gz",
+        "size_mb": 11.03,
+        "type": "historical",
+        "object_hash": "2f71bb30fb5876666429524d8bfa1ead2017eb86"
+      },
+      {
+        "path": "frontend/assets/images/image2.png",
+        "size_mb": 3.06,
+        "type": "current"
+      },
+      {
+        "path": "frontend/assets/images/image4.png",
+        "size_mb": 2.24,
+        "type": "current"
+      },
+      {
+        "path": "frontend/assets/images/image5.png",
+        "size_mb": 2.15,
+        "type": "current"
+      },
+      {
+        "path": "frontend/assets/images/image1.png",
+        "size_mb": 1.91,
+        "type": "current"
+      },
+      {
+        "path": "Infinite Engine.png",
+        "size_mb": 1.89,
+        "type": "current"
+      },
+      {
+        "path": "Quasar_Blackhole Engine.png",
+        "size_mb": 1.85,
+        "type": "current"
+      },
+      {
+        "path": "frontend/assets/images/image3.png",
+        "size_mb": 1.73,
+        "type": "current"
+      }
+    ],
+    "branches": {
+      "total_branches": 4,
+      "active_branches": [
+        {
+          "name": "copilot/fix-b277bb95-714c-47b3-9427-c2fb176e52da",
+          "days_old": 0,
+          "author": "copilot-swe-agent[bot]",
+          "last_commit_time": 1759192534
+        },
+        {
+          "name": "main",
+          "days_old": 0,
+          "author": "Marcus Banks-Bey",
+          "last_commit_time": 1759181127
+        },
+        {
+          "name": "repo-optimization-automation",
+          "days_old": 0,
+          "author": "Marcus Banks-Bey",
+          "last_commit_time": 1759192069
+        },
+        {
+          "name": "origin/copilot/fix-b277bb95-714c-47b3-9427-c2fb176e52da",
+          "days_old": 0,
+          "author": "copilot-swe-agent[bot]",
+          "last_commit_time": 1759192534
+        }
+      ],
+      "stale_branches": [],
+      "merged_branches": [],
+      "recommendations": []
+    },
+    "commits": {
+      "total_commits": 2,
+      "recent_commits": 2,
+      "large_commits": [],
+      "commit_frequency": {},
+      "recommendations": []
+    },
+    "duplicates": []
+  },
+  "recommendations": [
+    {
+      "category": "Storage Optimization",
+      "type": "large_files",
+      "description": "Found 9 large files totaling 36.9MB",
+      "priority": "low",
+      "actions": [
+        "Consider using Git LFS for large files",
+        "Move large assets to external storage",
+        "Compress or optimize large files",
+        "Remove unnecessary large files"
+      ]
+    }
+  ],
+  "summary": {
+    "large_files_count": 9,
+    "stale_branches_count": 0,
+    "total_commits": 2,
+    "potential_duplicates": 0
+  }
+}

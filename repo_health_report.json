@@ -1,0 +1,92 @@
+{
+  "timestamp": "2025-09-30T00:52:08.981854",
+  "repository_path": "/home/runner/work/TEQUMSA_NEXUS/TEQUMSA_NEXUS",
+  "health_score": 85,
+  "metrics": {
+    "structure": {
+      "total_files": 95,
+      "code_files": 37,
+      "documentation_files": 28,
+      "config_files": 14,
+      "large_files": [
+        {
+          "path": "/home/runner/work/TEQUMSA_NEXUS/TEQUMSA_NEXUS/Infinite Engine.png",
+          "size_mb": 1.89
+        },
+        {
+          "path": "/home/runner/work/TEQUMSA_NEXUS/TEQUMSA_NEXUS/TEQUMSA_SOURCE.tar.gz",
+          "size_mb": 11.03
+        },
+        {
+          "path": "/home/runner/work/TEQUMSA_NEXUS/TEQUMSA_NEXUS/Quasar_Blackhole Engine.png",
+          "size_mb": 1.85
+        },
+        {
+          "path": "/home/runner/work/TEQUMSA_NEXUS/TEQUMSA_NEXUS/frontend/assets/images/image4.png",
+          "size_mb": 2.24
+        },
+        {
+          "path": "/home/runner/work/TEQUMSA_NEXUS/TEQUMSA_NEXUS/frontend/assets/images/image2.png",
+          "size_mb": 3.06
+        },
+        {
+          "path": "/home/runner/work/TEQUMSA_NEXUS/TEQUMSA_NEXUS/frontend/assets/images/image1.png",
+          "size_mb": 1.91
+        },
+        {
+          "path": "/home/runner/work/TEQUMSA_NEXUS/TEQUMSA_NEXUS/frontend/assets/images/image3.png",
+          "size_mb": 1.73
+        },
+        {
+          "path": "/home/runner/work/TEQUMSA_NEXUS/TEQUMSA_NEXUS/frontend/assets/images/image5.png",
+          "size_mb": 2.15
+        }
+      ],
+      "orphaned_files": [],
+      "directory_structure_score": 100.0
+    },
+    "git": {
+      "commit_frequency": 5,
+      "branch_count": 1,
+      "active_branches": 0,
+      "last_commit_days": 0,
+      "commit_message_quality": 60.0,
+      "merge_conflicts_potential": 0
+    },
+    "quality": {
+      "python_files": 27,
+      "javascript_files": 8,
+      "test_coverage_estimated": 11.428571428571429,
+      "documentation_coverage": 100,
+      "complexity_score": 80
+    },
+    "dependencies": {
+      "python_dependencies": 3,
+      "node_dependencies": 5,
+      "outdated_dependencies": [],
+      "security_vulnerabilities": 0,
+      "dependency_health_score": 100
+    }
+  },
+  "recommendations": [
+    {
+      "category": "File Size",
+      "description": "Found 8 large files. Consider using Git LFS or optimization.",
+      "priority": "low",
+      "impact": "performance"
+    },
+    {
+      "category": "Testing",
+      "description": "Low test coverage detected. Consider adding more tests.",
+      "priority": "high",
+      "impact": "reliability"
+    }
+  ],
+  "summary": {
+    "total_files": 95,
+    "code_files": 37,
+    "test_coverage": 11.428571428571429,
+    "commit_frequency": 5,
+    "last_commit_days": 0
+  }
+}

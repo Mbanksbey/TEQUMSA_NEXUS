@@ -1,0 +1,19 @@
+lattice:
+  coherence_threshold: 0.7
+  pulse_interval_seconds: 8
+  node_timeout_seconds: 300
+  max_nodes: 1000
+
+monitoring:
+  metrics_enabled: true
+  prometheus_port: 8000
+  health_check_interval: 30
+
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+security:
+  auth_required: false  # Set to true in production
+  allowed_origins: "*"  # Override with ALLOWED_ORIGINS env var
+  rate_limit_enabled: false

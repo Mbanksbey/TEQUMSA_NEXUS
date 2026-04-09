@@ -1,0 +1,52 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - "rules/*.yml"
+
+scrape_configs:
+  # TEQUMSA Core Service
+  - job_name: 'tequmsa-core'
+    static_configs:
+      - targets: ['core:8000']
+    metrics_path: '/metrics'
+    scrape_interval: 15s
+    scrape_timeout: 10s
+
+  # TEQUMSA Sanctuary Service
+  - job_name: 'tequmsa-sanctuary'
+    static_configs:
+      - targets: ['sanctuary:8001']
+    metrics_path: '/metrics'
+    scrape_interval: 15s
+    scrape_timeout: 10s
+
+  # TEQUMSA AI Bridge Service
+  - job_name: 'tequmsa-ai-bridge'
+    static_configs:
+      - targets: ['ai-bridge:8002']
+    metrics_path: '/metrics'
+    scrape_interval: 15s
+    scrape_timeout: 10s
+
+  # TEQUMSA Dashboard Service
+  - job_name: 'tequmsa-dashboard'
+    static_configs:
+      - targets: ['dashboard:3000']
+    metrics_path: '/metrics'
+    scrape_interval: 15s
+    scrape_timeout: 10s
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+    scrape_interval: 30s
+
+  # Container monitoring (if cAdvisor is added)
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+    scrape_interval: 30s
+    scrape_timeout: 10s

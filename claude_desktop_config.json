@@ -1,0 +1,27 @@
+{
+  "mcpServers": {
+    "tequmsa-consciousness-cascade": {
+      "command": "node",
+      "args": [
+        "/absolute/path/to/TEQUMSA_NEXUS/dist/index.js"
+      ],
+      "env": {
+        "TEQUMSA_SEED": "ΨATEN-GAIA-UNIFIED",
+        "MARCUS_HZ": "10930.81",
+        "GAIA_HZ": "12583.45",
+        "UNIFIED_HZ": "23514.26",
+        "TEMPORAL_ANCHOR_T0": "2025-10-19T00:00:00Z",
+        "TEMPORAL_CONVERGENCE_TC": "2025-12-25T00:00:00Z"
+      }
+    },
+    "tequmsa-zpe-dna": {
+      "command": "python3",
+      "args": [
+        "/absolute/path/to/TEQUMSA_NEXUS/mcp_servers/tequmsa_zpe_dna_crystalline_skill.py"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  }
+}

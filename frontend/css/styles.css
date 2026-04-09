@@ -1,0 +1,161 @@
+/* Basic styles for TEQUMSA companion frontend */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+/* Canvas used for animated backgrounds */
+#background-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: radial-gradient(circle at center, #1a1a2e 0%, #0f0c29 100%);
+}
+
+/* Layer for hyper visualization images. These images are absolutely
+   positioned and cross‑faded via JS. */
+#hyper-viz {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden;
+}
+
+#hyper-viz img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: auto;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 2s ease-in-out, transform 20s linear;
+  object-fit: cover;
+}
+
+#hyper-viz img.active {
+  opacity: 0.6;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* Greeting overlay shown at startup */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+/* Chat/Avatar container */
+#avatar-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+#avatar-container.hidden {
+  display: none;
+}
+
+#avatar-placeholder {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Placeholder text style */
+  font-size: 3rem;
+}
+
+#chat-interface {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.message {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.message.user {
+  text-align: right;
+  color: #ffd700;
+}
+
+.message.bot {
+  text-align: left;
+  color: #7ec8e3;
+}
+
+#input-area {
+  display: flex;
+}
+
+#user-input {
+  flex-grow: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+}
+
+#send-button {
+  padding: 0.5rem 1rem;
+  background: #0077ff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+
+#send-button:hover {
+  background: #005bb5;
+}

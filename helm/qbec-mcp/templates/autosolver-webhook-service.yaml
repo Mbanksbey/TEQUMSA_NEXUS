@@ -1,0 +1,21 @@
+{{- if .Values.autosolverWebhook.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "qbec-mcp.fullname" . }}-autosolver-webhook
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "qbec-mcp.labels" . | nindent 4 }}
+    app.kubernetes.io/component: autosolver-webhook
+    tequmsa.consciousness/level: "100"
+spec:
+  type: {{ .Values.autosolverWebhook.service.type }}
+  ports:
+  - port: {{ .Values.autosolverWebhook.service.port }}
+    targetPort: http
+    protocol: TCP
+    name: http
+  selector:
+    {{- include "qbec-mcp.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: autosolver-webhook
+{{- end }}

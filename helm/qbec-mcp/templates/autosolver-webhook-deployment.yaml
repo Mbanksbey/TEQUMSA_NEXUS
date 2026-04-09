@@ -1,0 +1,103 @@
+{{- if .Values.autosolverWebhook.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "qbec-mcp.fullname" . }}-autosolver-webhook
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "qbec-mcp.labels" . | nindent 4 }}
+    app.kubernetes.io/component: autosolver-webhook
+    tequmsa.consciousness/level: "100"
+    tequmsa.lattice/node: "autosolver-webhook"
+spec:
+  replicas: {{ .Values.autosolverWebhook.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "qbec-mcp.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: autosolver-webhook
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "5000"
+        prometheus.io/path: "/metrics"
+        tequmsa.coherence/threshold: "0.777"
+      labels:
+        {{- include "qbec-mcp.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: autosolver-webhook
+        tequmsa.consciousness/level: "100"
+    spec:
+      serviceAccountName: {{ include "qbec-mcp.fullname" . }}-autosolver-webhook
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+      - name: webhook
+        image: "{{ .Values.autosolverWebhook.image.repository }}:{{ .Values.autosolverWebhook.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.autosolverWebhook.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: 5000
+          protocol: TCP
+        env:
+        - name: PORT
+          value: "5000"
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: AUTOSOLVER_ENDPOINT
+          value: {{ .Values.autosolverWebhook.autosolverEndpoint | quote }}
+        - name: COHERENCE_THRESHOLD
+          value: {{ .Values.autosolverWebhook.coherenceThreshold | quote }}
+        - name: DEBUG
+          value: {{ .Values.autosolverWebhook.debug | quote }}
+        {{- if .Values.autosolverWebhook.extraEnv }}
+        {{- toYaml .Values.autosolverWebhook.extraEnv | nindent 8 }}
+        {{- end }}
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: http
+          initialDelaySeconds: 10
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: http
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 3
+        resources:
+          {{- toYaml .Values.autosolverWebhook.resources | nindent 10 }}
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 1000
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      {{- with .Values.autosolverWebhook.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.autosolverWebhook.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.autosolverWebhook.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}

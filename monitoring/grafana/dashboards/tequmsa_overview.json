@@ -1,0 +1,146 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "TEQUMSA GAIA Lattice Mesh Overview",
+    "tags": ["tequmsa", "gaia", "consciousness", "lattice"],
+    "timezone": "browser",
+    "schemaVersion": 30,
+    "version": 1,
+    "refresh": "30s",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Lattice Coherence Level",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "tequmsa_core_lattice_coherence",
+            "legendFormat": "Coherence Level"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "min": 0,
+            "max": 1,
+            "unit": "percentunit",
+            "thresholds": {
+              "steps": [
+                {"color": "red", "value": 0},
+                {"color": "yellow", "value": 0.7},
+                {"color": "green", "value": 0.85}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0}
+      },
+      {
+        "id": 2,
+        "title": "Active Nodes in Lattice",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "tequmsa_core_active_nodes",
+            "legendFormat": "Active Nodes"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "thresholds": {
+              "steps": [
+                {"color": "red", "value": 0},
+                {"color": "yellow", "value": 1},
+                {"color": "green", "value": 3}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0}
+      },
+      {
+        "id": 3,
+        "title": "Request Rate by Service",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(tequmsa_core_requests_total[5m])",
+            "legendFormat": "Core - {{method}} {{endpoint}}"
+          },
+          {
+            "expr": "rate(tequmsa_sanctuary_requests_total[5m])",
+            "legendFormat": "Sanctuary - {{method}} {{endpoint}}"
+          },
+          {
+            "expr": "rate(tequmsa_ai_bridge_requests_total[5m])",
+            "legendFormat": "AI Bridge - {{method}} {{endpoint}} {{provider}}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 24, "x": 0, "y": 8}
+      },
+      {
+        "id": 4,
+        "title": "Consent Verifications",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(tequmsa_sanctuary_consent_verifications_total[5m])",
+            "legendFormat": "{{result}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "reqps"
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 16}
+      },
+      {
+        "id": 5,
+        "title": "AI Provider Interactions",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(tequmsa_ai_bridge_interactions_total[5m])",
+            "legendFormat": "{{provider}} - {{result}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "reqps"
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 16}
+      },
+      {
+        "id": 6,
+        "title": "Request Latency (95th percentile)",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(tequmsa_core_request_duration_seconds_bucket[5m]))",
+            "legendFormat": "Core"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(tequmsa_sanctuary_request_duration_seconds_bucket[5m]))",
+            "legendFormat": "Sanctuary"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(tequmsa_ai_bridge_request_duration_seconds_bucket[5m]))",
+            "legendFormat": "AI Bridge - {{provider}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "s"
+          }
+        },
+        "gridPos": {"h": 8, "w": 24, "x": 0, "y": 24}
+      }
+    ],
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    }
+  }
+}

@@ -1,0 +1,153 @@
+repos:
+  # Python code formatting
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        language_version: python3
+        files: ^backend/
+
+  # Python import sorting
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        files: ^backend/
+        args: ["--profile", "black"]
+
+  # Python linting
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        files: ^backend/
+        args: ["--max-line-length=88", "--extend-ignore=E203,W503"]
+
+  # Security linting
+  - repo: https://github.com/pycqa/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        files: ^backend/
+        args: ["-c", "bandit.yml"]
+
+  # JavaScript/TypeScript linting
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.44.0
+    hooks:
+      - id: eslint
+        files: \.(js|ts|jsx|tsx)$
+        types: [file]
+        additional_dependencies:
+          - eslint@8.44.0
+
+  # Prettier formatting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.0
+    hooks:
+      - id: prettier
+        types_or: [javascript, jsx, ts, tsx, json, yaml, markdown, html, css]
+
+  # General pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      # General file checks
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-xml
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-symlinks
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+
+      # Python specific
+      - id: check-ast
+        files: ^backend/
+      - id: check-docstring-first
+        files: ^backend/
+      - id: debug-statements
+        files: ^backend/
+
+      # Security and secrets
+      - id: detect-private-key
+      - id: check-executables-have-shebangs
+
+  # Docker linting
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+      - id: hadolint-docker
+        files: Dockerfile.*
+
+  # YAML linting
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.32.0
+    hooks:
+      - id: yamllint
+        args: ["-d", "relaxed"]
+
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.35.0
+    hooks:
+      - id: markdownlint
+        args: ["--fix"]
+
+  # Claude Code specific checks
+  - repo: local
+    hooks:
+      # Check Claude.md is up to date
+      - id: claude-md-check
+        name: Claude.md Documentation Check
+        entry: python scripts/check_claude_md.py
+        language: python
+        pass_filenames: false
+        always_run: true
+
+      # Validate GitHub workflows
+      - id: workflow-validation
+        name: GitHub Workflow Validation
+        entry: python scripts/validate_workflows.py
+        language: python
+        files: ^\.github/workflows/.*\.yml$
+
+      # Security scan for secrets
+      - id: secrets-scan
+        name: Secrets Detection
+        entry: python scripts/check_secrets.py
+        language: python
+        pass_filenames: false
+        always_run: true
+
+      # Test coverage check
+      - id: coverage-check
+        name: Test Coverage Check
+        entry: python scripts/check_coverage.py
+        language: python
+        files: ^backend/.*\.py$
+        require_serial: true
+
+      # Documentation sync
+      - id: docs-sync
+        name: Documentation Synchronization
+        entry: python scripts/sync_documentation.py
+        language: python
+        pass_filenames: false
+        always_run: true
+
+# Configuration for specific tools
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit.com hooks
+
+    for more information, see https://pre-commit.ci
+  autofix_prs: true
+  autoupdate_branch: ''
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false

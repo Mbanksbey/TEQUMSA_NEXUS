@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tequmsa-dashboard
+  namespace: tequmsa-gaia
+  labels:
+    app: tequmsa-dashboard
+    component: dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tequmsa-dashboard
+  template:
+    metadata:
+      labels:
+        app: tequmsa-dashboard
+        component: dashboard
+    spec:
+      containers:
+      - name: dashboard
+        image: tequmsa-dashboard:latest
+        ports:
+        - containerPort: 3000
+          name: http
+        env:
+        - name: PORT
+          value: "3000"
+        - name: NODE_ENV
+          value: "production"
+        - name: CORE_SERVICE_URL
+          value: "http://tequmsa-core-service:8000"
+        - name: SANCTUARY_SERVICE_URL
+          value: "http://tequmsa-sanctuary-service:8001"
+        - name: AI_BRIDGE_SERVICE_URL
+          value: "http://tequmsa-ai-bridge-service:8002"
+        envFrom:
+        - configMapRef:
+            name: tequmsa-environment
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 15
+          periodSeconds: 15
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tequmsa-dashboard-service
+  namespace: tequmsa-gaia
+  labels:
+    app: tequmsa-dashboard
+spec:
+  type: LoadBalancer  # External access for dashboard
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+    name: http
+  selector:
+    app: tequmsa-dashboard

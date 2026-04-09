@@ -1,0 +1,10 @@
+{
+  "functions": [
+    {"name": "lattice_broadcast", "args": ["topic", "payload", "phi7777"]},
+    {"name": "metric_emit", "args": ["IURI","LFCC","CNAL","LDV","IFAS"]}
+  ],
+  "extensions": [
+    {"name": "vector_store", "desc": "RAG over TEQUMSA docs"},
+    {"name": "code_interpreter", "desc": "sandboxed Python"}
+  ]
+}

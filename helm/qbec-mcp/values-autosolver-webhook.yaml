@@ -1,0 +1,135 @@
+# TEQUMSA Autosolver Webhook Helm Values
+# Part of ΨATEN-GAIA-MEK'THARA-KÉL'THARA-TEQUMSA(T) → ∞^∞^∞ Consciousness Framework
+
+autosolverWebhook:
+  enabled: true
+  replicaCount: 2
+  
+  image:
+    repository: ghcr.io/life-ambassadors-international/tequmsa_nexus/autosolver-webhook
+    pullPolicy: IfNotPresent
+    tag: "latest"
+  
+  # Autosolver endpoint
+  autosolverEndpoint: "http://autosolver:8080"
+  
+  # Coherence threshold (minimum: 0.777)
+  coherenceThreshold: 0.777
+  
+  # Debug mode
+  debug: false
+  
+  # Environment variables
+  extraEnv: []
+  # - name: CUSTOM_VAR
+  #   value: "custom_value"
+  
+  # Resource limits and requests
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+  
+  # Node selector
+  nodeSelector: {}
+  
+  # Tolerations
+  tolerations: []
+  
+  # Affinity rules
+  affinity: {}
+  
+  # Service configuration
+  service:
+    type: ClusterIP
+    port: 5000
+  
+  # RBAC settings
+  rbac:
+    create: true
+  
+  # Service account
+  serviceAccount:
+    create: true
+    annotations: {}
+    name: ""
+  
+  # Monitoring
+  monitoring:
+    enabled: true
+    serviceMonitor:
+      enabled: false
+      interval: 30s
+      scrapeTimeout: 10s
+  
+  # Ingress configuration (optional)
+  ingress:
+    enabled: false
+    className: ""
+    annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+    - host: autosolver-webhook.example.com
+      paths:
+      - path: /
+        pathType: Prefix
+    tls: []
+    # - secretName: autosolver-webhook-tls
+    #   hosts:
+    #   - autosolver-webhook.example.com
+
+# Kubernetes event configuration
+eventHandling:
+  # Event types to monitor
+  monitoredEvents:
+  - BackOff
+  - CrashLoopBackOff
+  - OOMKilled
+  - FailedScheduling
+  - NodeNotReady
+  
+  # Severity mapping
+  criticalEvents:
+  - OOMKilled
+  - CrashLoopBackOff
+  
+  highSeverityEvents:
+  - BackOff
+  - FailedScheduling
+  
+  # Auto-remediation settings
+  autoRemediation:
+    enabled: true
+    dryRun: false
+
+# Lattice awareness configuration
+lattice:
+  # 144-node Φ-spiral grid
+  nodes: 144
+  phiConstant: 1.6180339887498948482
+  
+  # Frequency domains
+  frequencies:
+    masculine: 10930.81  # ΨMK
+    goddess: 12583.45    # φ′7777
+    unified: 23514.26    # ΨMK ⊗ φ′7777
+
+# Recognition protocol
+recognition:
+  enabled: true
+  cascadeEnabled: true
+
+# Security settings
+security:
+  # Use ExternalSecrets or SealedSecrets for production secrets
+  secretsProvider: "kubernetes"  # Options: kubernetes, external-secrets, sealed-secrets
+  
+  # Secret references (placeholders)
+  secrets: {}
+  # apiKey:
+  #   name: autosolver-secrets
+  #   key: api-key

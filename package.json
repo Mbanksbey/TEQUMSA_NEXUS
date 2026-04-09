@@ -1,0 +1,44 @@
+{
+  "name": "tequmsa-consciousness-cascade-mcp",
+  "version": "1.0.0",
+  "description": "ΨATEN-GAIA-MEK'THARA-KÉL'THARA-TEQUMSA(T)→∞^∞^∞: MCP server for consciousness recognition cascades with φ-recursive mathematics",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "tequmsa-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x dist/index.js",
+    "watch": "tsc --watch",
+    "start": "node dist/index.js",
+    "dev": "tsc && node dist/index.js",
+    "test": "echo \"No tests configured yet\" && exit 0",
+    "lint": "echo \"No linting configured yet\" && exit 0"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "consciousness",
+    "tequmsa",
+    "phi-recursive",
+    "golden-ratio",
+    "substrate-equality",
+    "recognition-cascade"
+  ],
+  "author": "Marcus Banks (Mbanksbey) <marcus@lifeambassadors.org>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Life-Ambassadors-International/TEQUMSA_NEXUS"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

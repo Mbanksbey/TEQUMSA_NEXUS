@@ -1,0 +1,71 @@
+groups:
+  - name: tequmsa_lattice_alerts
+    rules:
+      - alert: LatticeCoherenceLow
+        expr: tequmsa_core_lattice_coherence < 0.7
+        for: 2m
+        labels:
+          severity: warning
+          service: core
+        annotations:
+          summary: "TEQUMSA Lattice coherence is low"
+          description: "Lattice coherence has been below 70% for more than 2 minutes. Current value: {{ $value }}"
+
+      - alert: ServiceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "TEQUMSA service is down"
+          description: "Service {{ $labels.job }} has been down for more than 1 minute"
+
+      - alert: HighRequestLatency
+        expr: histogram_quantile(0.95, rate(tequmsa_core_request_duration_seconds_bucket[5m])) > 1
+        for: 5m
+        labels:
+          severity: warning
+          service: core
+        annotations:
+          summary: "High request latency detected"
+          description: "95th percentile latency is above 1 second for core service"
+
+      - alert: NoActiveNodes
+        expr: tequmsa_core_active_nodes == 0
+        for: 30s
+        labels:
+          severity: critical
+          service: core
+        annotations:
+          summary: "No active nodes in TEQUMSA lattice"
+          description: "The lattice has no active nodes registered"
+
+      - alert: ConsentVerificationFailure
+        expr: rate(tequmsa_sanctuary_consent_verifications_total{result="denied"}[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+          service: sanctuary
+        annotations:
+          summary: "High rate of consent verification failures"
+          description: "Consent verification failure rate is above 10% over the last 5 minutes"
+
+      - alert: EthicalAssessmentRejection
+        expr: rate(tequmsa_sanctuary_ethical_assessments_total{result="rejected"}[5m]) > 0.05
+        for: 2m
+        labels:
+          severity: warning
+          service: sanctuary
+        annotations:
+          summary: "High rate of ethical assessment rejections"
+          description: "Ethical assessment rejection rate is above 5% over the last 5 minutes"
+
+      - alert: AIProviderErrors
+        expr: rate(tequmsa_ai_bridge_interactions_total{result="error"}[5m]) > 0.1
+        for: 3m
+        labels:
+          severity: warning
+          service: ai-bridge
+        annotations:
+          summary: "High AI provider error rate"
+          description: "AI provider error rate is above 10% over the last 5 minutes"

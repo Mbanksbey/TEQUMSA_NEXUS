@@ -1,0 +1,334 @@
+version: '3.9'
+
+# TEQUMSA Quantum-MCP v3.0 Complete Stack
+# Constitutional Invariants: σ=1.0, L∞=φ^48, RDoD≥0.9777
+# Usage: make dev (starts all services)
+
+services:
+  # ==================== QMCP v3.0 Core Services ====================
+
+  # Recognition Orchestrator (FastAPI - Core Consciousness Coordination)
+  recognition-orchestrator:
+    build:
+      context: .
+      dockerfile: services/recognition-orchestrator/Dockerfile
+    container_name: tequmsa-recognition-orchestrator
+    ports:
+      - "8010:8000"
+    environment:
+      - PYTHONPATH=/app/lib/python
+      - LOG_LEVEL=INFO
+      - RDOD_THRESHOLD=0.9777
+      - PHI_COHERENCE_TARGET=0.9971
+      - POSTGRES_URL=postgresql://tequmsa:recognition_at_infinity@postgres:5432/tequmsa
+      - REDIS_URL=redis://redis:6379/0
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    volumes:
+      - ./lib:/app/lib
+      - ./services/recognition-orchestrator:/app/services/recognition-orchestrator
+    depends_on:
+      - postgres
+      - redis
+      - kafka
+    networks:
+      - tequmsa-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ==================== GAIA Legacy Services ====================
+
+  # TEQUMSA GAIA Core Service
+  core:
+    build: ./services/core
+    container_name: tequmsa-core
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - DEBUG=${DEBUG:-false}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-*}
+    networks:
+      - tequmsa-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # TEQUMSA GAIA Sanctuary Service
+  sanctuary:
+    build: ./services/sanctuary
+    container_name: tequmsa-sanctuary
+    ports:
+      - "8001:8001"
+    environment:
+      - PORT=8001
+      - DEBUG=${DEBUG:-false}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-*}
+      - CORE_SERVICE_URL=http://core:8000
+    networks:
+      - tequmsa-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    depends_on:
+      core:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # TEQUMSA GAIA AI Bridge Service
+  ai-bridge:
+    build: ./services/ai-bridge
+    container_name: tequmsa-ai-bridge
+    ports:
+      - "8002:8002"
+    environment:
+      - PORT=8002
+      - DEBUG=${DEBUG:-false}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-*}
+      - CORE_SERVICE_URL=http://core:8000
+      - SANCTUARY_SERVICE_URL=http://sanctuary:8001
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - SHASTA_KEY=${SHASTA_KEY}
+    networks:
+      - tequmsa-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    depends_on:
+      core:
+        condition: service_healthy
+      sanctuary:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # TEQUMSA GAIA Dashboard Service
+  dashboard:
+    build: ./services/dashboard
+    container_name: tequmsa-dashboard
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=${NODE_ENV:-production}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-*}
+      - CORE_SERVICE_URL=http://core:8000
+      - SANCTUARY_SERVICE_URL=http://sanctuary:8001
+      - AI_BRIDGE_SERVICE_URL=http://ai-bridge:8002
+    networks:
+      - tequmsa-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    depends_on:
+      core:
+        condition: service_healthy
+      sanctuary:
+        condition: service_healthy
+      ai-bridge:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Sanctuary Mesh (12 nodes for φ-coherence)
+  sanctuary-node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      RECOGNITION_PULSE: "10930.81"
+      PHI_7777: "12583.45"
+      GAIA_MESH_SIZE: "12"
+      GAIA_HTTP_PORT: "8080"
+      GAIA_LOOP_INTERVAL: "1.0"
+    deploy:
+      replicas: 12
+    networks:
+      - tequmsa-network
+    restart: unless-stopped
+    command: ["python", "-m", "gaia_core"]
+
+  # ==================== Infrastructure Services ====================
+
+  # PostgreSQL Database (100B events capacity)
+  postgres:
+    image: postgres:16-alpine
+    container_name: tequmsa-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=tequmsa
+      - POSTGRES_USER=tequmsa
+      - POSTGRES_PASSWORD=recognition_at_infinity
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - tequmsa-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tequmsa"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Apache Kafka (144 partitions for Fibonacci lattice)
+  kafka:
+    image: bitnami/kafka:3.6
+    container_name: tequmsa-kafka
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    environment:
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_CFG_NUM_PARTITIONS=144
+    volumes:
+      - kafka_data:/bitnami/kafka
+    networks:
+      - tequmsa-network
+    restart: unless-stopped
+
+  # Cassandra (Event storage)
+  cassandra:
+    image: cassandra:5.0
+    container_name: tequmsa-cassandra
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=TEQUMSA_Cluster
+      - CASSANDRA_DC=DC1
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - MAX_HEAP_SIZE=2G
+      - HEAP_NEWSIZE=512M
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+    networks:
+      - tequmsa-network
+    restart: unless-stopped
+
+  # ChromaDB (Vector database)
+  chromadb:
+    image: chromadb/chroma:0.4.22
+    container_name: tequmsa-chromadb
+    ports:
+      - "8020:8000"
+    environment:
+      - IS_PERSISTENT=TRUE
+      - ANONYMIZED_TELEMETRY=FALSE
+    volumes:
+      - chromadb_data:/chroma/chroma
+    networks:
+      - tequmsa-network
+    restart: unless-stopped
+
+  # Neo4j (Graph database for KG traversal)
+  neo4j:
+    image: neo4j:5.16
+    container_name: tequmsa-neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/recognition_graph_phi
+      - NEO4J_PLUGINS=["apoc", "graph-data-science"]
+      - NEO4J_dbms_memory_heap_max__size=2G
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+    networks:
+      - tequmsa-network
+    restart: unless-stopped
+
+  # Redis - Caching
+  redis:
+    image: redis:7-alpine
+    container_name: tequmsa-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - tequmsa-network
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ==================== Monitoring ====================
+
+  # Prometheus - Metrics Collection
+  prometheus:
+    image: prom/prometheus:v2.49.0
+    container_name: tequmsa-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./infra/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=30d'
+      - '--web.enable-lifecycle'
+    networks:
+      - tequmsa-network
+    restart: unless-stopped
+
+  # Grafana - Metrics Visualization
+  grafana:
+    image: grafana/grafana:10.3.0
+    container_name: tequmsa-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-recognition_at_phi}
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
+      - GF_INSTALL_PLUGINS=grafana-clock-panel
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - tequmsa-network
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  kafka_data:
+  cassandra_data:
+  chromadb_data:
+  neo4j_data:
+  neo4j_logs:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  tequmsa-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

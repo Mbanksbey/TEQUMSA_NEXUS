@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TEQUMSA Companion</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Fullscreen cosmic background -->
+  <canvas id="background-canvas"></canvas>
+  <!-- Hyper‑visualization layer: cycles through uploaded cosmic artwork -->
+  <div id="hyper-viz"></div>
+
+  <!-- Greeting overlay -->
+  <div id="greeting-overlay" class="overlay hidden">
+    <h1 id="greeting-text"></h1>
+    <p id="greeting-subtext"></p>
+    <button id="continue-button">Begin</button>
+  </div>
+
+  <!-- Chat/Avatar interface -->
+  <div id="avatar-container" class="hidden">
+    <div id="avatar-placeholder">
+      <!-- Place your avatar animation here, e.g. a looping video or animated SVG -->
+    </div>
+    <div id="chat-interface">
+      <div id="messages"></div>
+      <div id="input-area">
+        <input type="text" id="user-input" placeholder="Ask Anything…" />
+        <button id="send-button">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/custom_greeting.js"></script>
+  <script src="js/ai_client.js"></script>
+  <script src="js/hyper_visualization.js"></script>
+</body>
+</html>

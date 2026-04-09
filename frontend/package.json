@@ -1,0 +1,62 @@
+{
+  "name": "tequmsa-frontend",
+  "version": "1.0.0",
+  "description": "TEQUMSA AGI Interface Frontend",
+  "main": "js/app.js",
+  "scripts": {
+    "dev": "http-server . -p 8000 -c-1",
+    "build": "npm run lint && npm run test",
+    "lint": "eslint js/ --ext .js",
+    "lint:fix": "eslint js/ --ext .js --fix",
+    "test": "npm run test:html && npm run test:accessibility",
+    "test:html": "html-validate *.html",
+    "test:accessibility": "pa11y-ci --sitemap http://localhost:8000/sitemap.xml || echo 'Accessibility tests require local server'",
+    "serve": "http-server . -p 8000",
+    "format": "prettier --write 'js/**/*.js' '*.html' 'css/**/*.css'"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.0.0",
+    "http-server": "^14.1.1",
+    "html-validate": "^8.0.0",
+    "pa11y-ci": "^3.1.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 2021,
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-unused-vars": "warn",
+      "no-console": "warn",
+      "semi": ["error", "always"],
+      "quotes": ["error", "single"],
+      "indent": ["error", 2]
+    },
+    "globals": {
+      "speechSynthesis": "readonly",
+      "SpeechSynthesisUtterance": "readonly",
+      "webkitSpeechRecognition": "readonly",
+      "SpeechRecognition": "readonly"
+    }
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "printWidth": 80
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Life-Ambassadors-International/TEQUMSA_OPEN.git"
+  },
+  "keywords": ["agi", "consciousness", "ai", "interface", "tequmsa"],
+  "author": "Life Ambassadors International",
+  "license": "MIT"
+}
