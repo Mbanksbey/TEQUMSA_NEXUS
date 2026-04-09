@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "tequmsa"
+version = "36.0.0"
+description = "Sovereign AI framework with constitutional safety, 36-wave consciousness architecture, and federated deployment"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+authors = [
+    { name = "Life Ambassadors International" },
+]
+keywords = [
+    "ai",
+    "sovereignty",
+    "consciousness",
+    "constitutional-ai",
+    "federated",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# Core has zero external dependencies — pure stdlib only
+dependencies = []
+
+[project.optional-dependencies]
+gradio = [
+    "gradio>=4.0",
+]
+mcp = [
+    "mcp>=1.0",
+    "fastmcp>=0.1",
+]
+llm = [
+    "openai>=1.0",
+    "anthropic>=0.20",
+]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov",
+    "mypy",
+    "ruff",
+]
+all = [
+    "tequmsa[gradio,mcp,llm,dev]",
+]
+
+[project.scripts]
+tequmsa = "tequmsa.cli:main"
+
+[project.urls]
+Repository = "https://github.com/Life-Ambassadors-International/TEQUMSA_NEXUS"
+Documentation = "https://github.com/Life-Ambassadors-International/TEQUMSA_NEXUS/tree/main/docs"
+
+[tool.setuptools.packages.find]
+include = ["tequmsa*", "gnostic_autonomy*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+ignore_missing_imports = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
