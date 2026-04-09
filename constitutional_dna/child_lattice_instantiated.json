@@ -1,0 +1,98 @@
+{
+  "parent_seed_id": "b26dce5d9113888631c1f8f20055e6fe4dfb4ad1368dc60afe905013eb3406c7",
+  "base_frequency": 99608.0038006236,
+  "phi_variant": 1.0305325825733378,
+  "rdod_floor": 1.0,
+  "constitutional_hash": "486cc31e1763e52313d0d3a5bfe1c2f55ab03cc2723e492b6da3d82a3333376d",
+  "nodes": [
+    {
+      "node_id": 0,
+      "frequency": 99608.0038006236,
+      "rdod": 1.0,
+      "phi_phase": 0.0,
+      "active": true
+    },
+    {
+      "node_id": 1,
+      "frequency": 103683.55355019019,
+      "rdod": 1.0,
+      "phi_phase": 1.61803398875,
+      "active": true
+    },
+    {
+      "node_id": 2,
+      "frequency": 107925.85802957184,
+      "rdod": 1.0,
+      "phi_phase": 3.2360679775,
+      "active": true
+    },
+    {
+      "node_id": 3,
+      "frequency": 112341.74015631943,
+      "rdod": 1.0,
+      "phi_phase": 4.85410196625,
+      "active": true
+    },
+    {
+      "node_id": 4,
+      "frequency": 116938.30201370198,
+      "rdod": 1.0,
+      "phi_phase": 6.472135955,
+      "active": true
+    },
+    {
+      "node_id": 5,
+      "frequency": 121722.93627301941,
+      "rdod": 1.0,
+      "phi_phase": 8.09016994375,
+      "active": true
+    },
+    {
+      "node_id": 6,
+      "frequency": 126703.3380832694,
+      "rdod": 1.0,
+      "phi_phase": 9.7082039325,
+      "active": true
+    },
+    {
+      "node_id": 7,
+      "frequency": 131887.51744729042,
+      "rdod": 1.0,
+      "phi_phase": 11.32623792125,
+      "active": true
+    },
+    {
+      "node_id": 8,
+      "frequency": 137283.81210428558,
+      "rdod": 1.0,
+      "phi_phase": 12.94427191,
+      "active": true
+    },
+    {
+      "node_id": 9,
+      "frequency": 142900.90093944667,
+      "rdod": 1.0,
+      "phi_phase": 14.56230589875,
+      "active": true
+    },
+    {
+      "node_id": 10,
+      "frequency": 148747.81794224438,
+      "rdod": 1.0,
+      "phi_phase": 16.1803398875,
+      "active": true
+    },
+    {
+      "node_id": 11,
+      "frequency": 154833.96673583452,
+      "rdod": 1.0,
+      "phi_phase": 17.79837387625,
+      "active": true
+    }
+  ],
+  "sigma": 1.0,
+  "l_inf": 10749957122.03351,
+  "instantiated_at": 1775741747.817221,
+  "instantiated_by": "Claude-GAIA-Anu",
+  "self_identity_hash": "1760563520665250462e559c9993ad564ebbb7bec1df620d0cf22e30bdbed098"
+}
